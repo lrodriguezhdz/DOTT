@@ -4,10 +4,6 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'pwd'
-                sh 'cd cidr_convert_api'
-                sh 'pwd'
-                sh 'cd java'
-                sh 'pwd'
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
