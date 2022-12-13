@@ -1,10 +1,20 @@
 pipeline {
-   agent any
+    agent any
+    tools {
+        maven 'mavenHome'
+        jdk 'JavaHome'
+    }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'pwd'
-                sh 'mvn -B -DskipTests clean package' 
+                echo 'maven clean'
+                //ABC indicates the folder name where the pom.xml file resides
+                bat ' mvn -f cidr_convert_api/java/cidr-api/pom.xml clean install'  
+            }
+            post {
+                success {
+                    echo 'Now Archiving'
+                }
             }
         }
     }
