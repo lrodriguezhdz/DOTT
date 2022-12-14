@@ -6,11 +6,6 @@ pipeline {
                 //ABC indicates the folder name where the pom.xml file resides
                 sh ' mvn -f cidr_convert_api/java/cidr-api/pom.xml clean install'  
             }
-            post {
-                success {
-                    echo 'Now Archiving'
-                }
-            }
         }
     }
 }
