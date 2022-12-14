@@ -1,6 +1,6 @@
 pipeline {
     stages {
-        stage('Build 34') {
+        stage('Build 35') {
             steps {
                 echo 'maven clean'
                 //ABC indicates the folder name where the pom.xml file resides
