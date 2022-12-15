@@ -1,10 +1,14 @@
 pipeline {
+    agent {
+        docker {
+            image 'maven:3.8.1-adoptopenjdk-11' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
     stages {
-        stage('Build 35') {
+        stage('Build') { 
             steps {
-                echo 'maven clean'
-                //ABC indicates the folder name where the pom.xml file resides
-                sh ' mvn -f cidr_convert_api/java/cidr-api/pom.xml clean install'  
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
