@@ -18,7 +18,7 @@ pipeline {
               withSonarQubeEnv('Sonar') {
                // sh 'dir(cidr_convert_api/java/cidr-api)'
               //  sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml  sonar:sonar'
-                sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml clean package sonar:sonar'
+                sh 'mvn cidr_convert_api/java/cidr-api/pom.xml clean package sonar:sonar'
                // sh 'mvn -f cidr_convert_api/java/cidr-api/ org.sonarsource.scanner.maven:sonar-maven-plugin:4.7.0.2747:sonar'
                // sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar '
               }
@@ -34,7 +34,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+        sh(script: 'mvn test')
 
       }
     }
