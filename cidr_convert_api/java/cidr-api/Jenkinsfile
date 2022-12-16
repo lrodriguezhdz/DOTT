@@ -1,8 +1,8 @@
 pipeline {
     agent any
-        tools { 
-         maven 'Maven' 
-     }
+    //    tools { 
+    //     maven 'Maven' 
+    // }
     stages {
         stage('Build ') { 
             steps {
@@ -12,16 +12,17 @@ pipeline {
             }
         }
         
-        // stage("build & SonarQube analysis") {
-        //     agent any
-        //     steps {
-        //       withSonarQubeEnv('Sonar') {
-        //       //  sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml  sonar:sonar'
-        //         sh 'mvn -f cidr_convert_api/java/cidr-api/ org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-        //        // sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar '
-        //       }
-        //     }
-        //   }
+        stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('Sonar') {
+                sh  'dir(cidr_convert_api/java/cidr-api)'
+               sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml  sonar:sonar'
+                sh 'mvn -f cidr_convert_api/java/cidr-api/ org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+               sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar '
+              }
+            }
+          }
 
           stage('Checkout') {
       steps {
