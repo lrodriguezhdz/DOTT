@@ -4,11 +4,11 @@ pipeline {
         maven 'Maven' 
     }
     stages {
-        stage('Build 2') { 
+        stage('Build ') { 
             steps {
                 sh 'pwd'
                 sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml clean install -e'
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -B cidr_convert_api/java/cidr-api/pom.xml -DskipTests clean package' 
             }
         }
     }
