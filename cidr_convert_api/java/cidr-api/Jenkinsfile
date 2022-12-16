@@ -12,4 +12,12 @@ pipeline {
             }
         }
     }
+    stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn -f cidr_convert_api/java/cidr-api/pom.xml clean package sonar:sonar'
+              }
+            }
+          }
 }
