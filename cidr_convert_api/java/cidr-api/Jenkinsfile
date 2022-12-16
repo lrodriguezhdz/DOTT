@@ -11,8 +11,7 @@ pipeline {
                 //sh 'mvn -B -DskipTests cidr_convert_api/java/cidr-api/pom.xml clean package' 
             }
         }
-    }
-    stage("build & SonarQube analysis") {
+        stage("build & SonarQube analysis") {
             agent any
             steps {
               withSonarQubeEnv('My SonarQube Server') {
@@ -20,4 +19,6 @@ pipeline {
               }
             }
           }
+    }
+    
 }
